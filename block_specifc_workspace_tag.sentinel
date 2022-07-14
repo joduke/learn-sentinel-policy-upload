@@ -1,0 +1,24 @@
+import "tfrun" as tfrun
+
+
+# List of prohibited tags
+prohibited_list = ["prod", "test"]
+
+tags = tfrun.tags
+
+# Call the validation function
+# Warnings will be printed for violations
+cost_validated = tfrun.tags != prohibited_list
+
+violation = 0
+for tag as value {
+    match = prohibited_list else true //to recover from undefined variable https://docs.hashicorp.com/sentinel/language/undefined#else-expressions
+    if match is false {
+        violation += 1
+        print("Tag" + value + " is blocked from applies")
+    }
+}
+
+main = rule {
+    violation is 0
+}
