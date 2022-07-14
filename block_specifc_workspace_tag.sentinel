@@ -11,7 +11,7 @@ tags = tfrun.tags
 cost_validated = tfrun.tags != prohibited_list
 
 violation = 0
-for tag as value {
+for tags as value {
     match = prohibited_list else true //to recover from undefined variable https://docs.hashicorp.com/sentinel/language/undefined#else-expressions
     if match is false {
         violation += 1
