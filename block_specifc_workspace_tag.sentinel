@@ -10,7 +10,7 @@ tags = tfrun.tags
 # Warnings will be printed for violations
 cost_validated = tfrun.tags != prohibited_list
 
-violatingTags = config.filter_attribute_in_list(tags,
+violatingTags = tfrun.filter_attribute_in_list(tags,
                      "type", prohibited_list, true)
 
 main = rule {
