@@ -1,18 +1,17 @@
+# import tfrun
 import "tfrun" as tfrun
-
 
 # List of prohibited tags
 prohibited_list = ["prod", "test"]
 
+# Get eorkspace tags from current run
 tags = tfrun.tags
 
-# Call the validation function
-# Warnings will be printed for violations
-cost_validated = tfrun.tags != prohibited_list
-
-violatingTags = tfrun.filter_attribute_in_list(tags,
-                     "type", prohibited_list, true)
+# Rule to detect prhibited tags
+prohibited_workspace_tags = rule {
+    tags not contains prohibited_list
+}
 
 main = rule {
- length(violatingTags["messages"]) is 0
+    (prohibited_workspace_tags) else true
 }
