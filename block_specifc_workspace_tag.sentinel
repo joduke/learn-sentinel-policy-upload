@@ -4,14 +4,14 @@ import "tfrun" as tfrun
 # List of prohibited tags
 prohibited_list = ["prod", "test"]
 
-# Get eorkspace tags from current run
+# Get workspace tags from current run
 tags = tfrun.tags
 
-# Rule to detect prhibited tags
+# Rule to detect prohibited tags
 prohibited_workspace_tags = rule {
-    tags not contains prohibited_list
+    tags contains prohibited_list
 }
 
 main = rule {
-    (prohibited_workspace_tags) else true
+    (prohibited_workspace_tags) else false
 }
