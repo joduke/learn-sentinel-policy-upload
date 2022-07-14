@@ -5,7 +5,7 @@ import "tfrun" as tfrun
 prohibited_list = ["prod", "test"]
 
 # Get workspace tags from current run
-tags = tfrun.tags
+tags = tfrun.workspace.tags
 
 # Rule to detect prohibited tags
 prohibited_workspace_tags = rule {
