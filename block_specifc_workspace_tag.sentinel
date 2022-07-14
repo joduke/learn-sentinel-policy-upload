@@ -10,15 +10,9 @@ tags = tfrun.tags
 # Warnings will be printed for violations
 cost_validated = tfrun.tags != prohibited_list
 
-violation = 0
-for tags as value {
-    match = prohibited_list else true //to recover from undefined variable https://docs.hashicorp.com/sentinel/language/undefined#else-expressions
-    if match is false {
-        violation += 1
-        print("Tag" + value + " is blocked from applies")
-    }
-}
+violatingTags = config.filter_attribute_in_list(tags,
+                     "type", prohibited_list, true)
 
 main = rule {
-    violation is 0
+ length(violatingTags["messages"]) is 0
 }
