@@ -1,17 +1,11 @@
 # import tfrun
-import "tfrun" as tfrun
+import "tfrun" 
 
-# List of prohibited tags
-prohibited_list = ["prod", "test"]
-
-# Get workspace tags from current run
-tags = tfrun.workspace.tags
-
-# Rule to detect prohibited tags
-prohibited_workspace_tags = rule {
-    tags contains prohibited_list
+# Rule to detect mandatory tags
+mandatory_workspace_tags = rule {
+    tfrun.workspace.tags contains "prod"
 }
 
 main = rule {
-    (prohibited_workspace_tags) else false
+  not  mandatory_workspace_tags
 }
