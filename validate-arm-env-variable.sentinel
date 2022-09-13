@@ -1,0 +1,14 @@
+import "tfrun"
+
+# Prevent use of ARM_SUBSCRIPTION_ID environment variable
+arm_env_vars_validated = true
+if "ARM_SUBSCRIPTION_ID" in keys(tfrun.variables)  {
+  print("Workspaces are not allowed to set the ARM_SUBSCRIPTION_ID environment variable.")
+  arm_env_vars_validated = false
+}
+
+validated = arm_env_vars_validated
+# Main rule
+main = rule {
+  validated
+}
