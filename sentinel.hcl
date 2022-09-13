@@ -2,6 +2,9 @@
 #  enforcement_level = "hard-mandatory"
 #}
 
-policy "block_specifc_workspace_tag" {
+#policy "block_specifc_workspace_tag" {
+#  enforcement_level = "hard-mandatory"
+#}
+
+policy "validate-arm-env-variable" {
   enforcement_level = "hard-mandatory"
-}
