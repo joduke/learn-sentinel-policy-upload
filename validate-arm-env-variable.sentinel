@@ -3,7 +3,7 @@ import "tfrun"
 # Prevent use of ARM_SUBSCRIPTION_ID environment variable
 arm_env_vars_validated = true
 if "ARM_SUBSCRIPTION_ID" in keys(tfrun.variables)  {
-  print("Workspaces are not allowed to set the ARM_SUBSCRIPTION_ID environment variable.")
+  print("Workspaces are not allowed to set the ARM_SUBSCRIPTION_ID environment variable. Please set the subcription_id within the azurerm provider block.")
   arm_env_vars_validated = false
 }
 
