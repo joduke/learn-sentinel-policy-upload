@@ -8,3 +8,4 @@
 
 policy "validate-arm-env-variable" {
   enforcement_level = "hard-mandatory"
+}
