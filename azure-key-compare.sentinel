@@ -1,0 +1,26 @@
+import "http"
+import "strings"
+
+//suppliedKey = "189751adb154562ae762b650000c552a"
+//suppliedKey = "189751adb154562aeasdfasdf2b650000c552a"
+suppliedKey = "b988714b3bef44a63c336b54bae22f2"
+validUsage = false
+
+// make api call to get list of acceptable subscription IDs
+req = http.request("https://my.api.mockaroo.com/azurekeys.json").with_header("X-API-Key", "9fd821e0")
+
+// pre-process to split values out
+resp = strings.split(http.get(req).body,"\n")
+
+print("List of acceptable subscription keys: ", resp)
+print("Size: ",length(resp))
+print("Looping through to compare -->")
+
+for resp as key {
+    // your provided key MUST MATCH one of the keys in the list
+    if suppliedKey == key {
+    validUsage = true
+ }
+}
+
+main = rule { validUsage }
